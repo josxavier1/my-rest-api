@@ -1,6 +1,8 @@
 package com.jx.restapi.domain;
 
 import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,8 +11,8 @@ import javax.persistence.Id;
 public class SalesCustomer {
 
 	private @Id @GeneratedValue Long id;
-	private String customerName;
-	private String phone;
+	@Column(length=50)private String customerName;
+	@Column(length=10) private String phone;
 	//private List<CustomerPreference> customerPreferenceList;
 
 	SalesCustomer() {}
