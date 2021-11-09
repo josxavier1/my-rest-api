@@ -41,10 +41,8 @@ public class SalesCustomerController {
 	}
 
 	/*
-	 * get all customers before hateos
+	 * get all customers before Hateos
 	 * 
-	 * @GetMapping("/salesCustomers") List<SalesCustomer> getAll() { return
-	 * salesCustomerRepository.findAll(); }
 	 */
 	@GetMapping("/salesCustomers")
 	CollectionModel<EntityModel<SalesCustomer>> getAll() {
@@ -84,10 +82,6 @@ public class SalesCustomerController {
 	 * return a single sales customer
 	 * 
 	 * without hateos
-	 * 
-	 * @GetMapping("/employees/{id}") Employee one(@PathVariable Long id) { return
-	 * repository.findById(id) .orElseThrow(() -> new
-	 * EmployeeNotFoundException(id)); }
 	 */
 	@GetMapping("/salesCustomers/{id}")
 	EntityModel<SalesCustomer> getOne(@PathVariable Long id) throws SalesCustomerNotFoundException {
