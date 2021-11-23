@@ -81,7 +81,7 @@ public class SalesCustomerController {
 	/*
 	 * return a single sales customer
 	 * 
-	 * without hateos
+	 * without Hateos
 	 */
 	@GetMapping("/salesCustomers/{id}")
 	EntityModel<SalesCustomer> getOne(@PathVariable Long id) throws SalesCustomerNotFoundException {
@@ -94,6 +94,7 @@ public class SalesCustomerController {
 				linkTo(methodOn(SalesCustomerController.class).getAll()).withRel("salesCustomers"));
 	}
 
+	
 	@PutMapping("/salesCustomers/{id}")
 	SalesCustomer update(@RequestBody SalesCustomer newSalesCustomer, @PathVariable Long id) {
 
