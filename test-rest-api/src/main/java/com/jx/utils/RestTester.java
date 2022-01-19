@@ -176,8 +176,11 @@ public class RestTester {
 		//testAnotherRestApi("http://jcheraparambil-eval-test.apigee.net/joe-test-2");
 		
 		for (int i =0; i < 1000; i++) {
-		testAnotherRestApi("http://10.100.12.216:8280/wb/v1/countries/AUS", "http://10.100.12.216:8280/token",
-				"ESkxuPOSTTy0l6sNnuLTf_fhOp8a", "1UzNsucmzU3YxFhCf9nf4988W8Ea");
+//		testAnotherRestApi("http://10.100.12.216:8280/wb/v1/countries/AUS", "http://10.100.12.216:8280/token",
+//				"ESkxuPOSTTy0l6sNnuLTf_fhOp8a", "1UzNsucmzU3YxFhCf9nf4988W8Ea");
+		testAnotherRestApi("https://dev01.apimanager.dandh.net/api/oauth/authorize", "https://dev01.apimanager.dandh.net/api/oauth/token",
+				"a0295838-5b06-41a4-a8e5-6ea31c26dfff", "c778c70d-503f-4e3f-9eeb-0963eabf6a92");
+
 		}
 	}
 }
