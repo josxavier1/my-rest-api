@@ -8,6 +8,7 @@ import java.util.Properties;
 
 public class DBConn {
 
+	// some comment
 	public static void main(String[] args) {
 
 		String dbURL = "jdbc:sqlserver://IS197\\SQLEXPRESS;databaseName=testground";

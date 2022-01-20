@@ -7,6 +7,7 @@ import java.util.Scanner;
 import org.json.JSONObject;
 import org.json.XML;
 
+// some comment
 public class FileUtil {
 
 	public String convertXMLtoJson(String xmlLocation) throws IOException {
