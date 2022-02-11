@@ -20,7 +20,7 @@ public class RestTester {
 	private static String getOAuthToken(HttpURLConnection conn, String tokenURL, String clientId, String clientSecret) {
 
 		String token = null;
-		String content = "grant_type=client_credentials";
+		String content = "grant_type=client_credentials&client_id=" + clientId + "&client_secret=" + clientSecret;
 		String auth = clientId + ":" + clientSecret;
 		BufferedReader reader = null;
 		Pattern pat = Pattern.compile(".*\"access_token\"\\s*:\\s*\"([^\"]+)\".*");
@@ -32,9 +32,10 @@ public class RestTester {
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("POST");
 			conn.setDoOutput(true);
-			conn.setRequestProperty("Authorization", "Basic " + authentication);
+			//conn.setRequestProperty("Authorization", "Basic " + authentication);
 			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-			conn.setRequestProperty("Accept", "application/json");
+			//conn.setRequestProperty("Accept", "application/json");
+			conn.setRequestProperty("Accept", "*/*");
 			PrintStream os = new PrintStream(conn.getOutputStream());
 			os.print(content);
 			os.close();
@@ -175,12 +176,12 @@ public class RestTester {
 		
 		//testAnotherRestApi("http://jcheraparambil-eval-test.apigee.net/joe-test-2");
 		
-		for (int i =0; i < 1000; i++) {
+//		for (int i =0; i < 1000; i++) {
 //		testAnotherRestApi("http://10.100.12.216:8280/wb/v1/countries/AUS", "http://10.100.12.216:8280/token",
 //				"ESkxuPOSTTy0l6sNnuLTf_fhOp8a", "1UzNsucmzU3YxFhCf9nf4988W8Ea");
-		testAnotherRestApi("https://dev01.apimanager.dandh.net/api/oauth/authorize", "https://dev01.apimanager.dandh.net/api/oauth/token",
+		testAnotherRestApi("https://dev01.apimanager.dandh.net/api/oauth/authorize", "https://dev01.auth.dandh.net/api/oauth/token",
 				"a0295838-5b06-41a4-a8e5-6ea31c26dfff", "c778c70d-503f-4e3f-9eeb-0963eabf6a92");
 
-		}
+//		}
 	}
 }
