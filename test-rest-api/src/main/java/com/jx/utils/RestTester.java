@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 import javax.net.ssl.HttpsURLConnection;
 
 public class RestTester {
-	
+
 	private static String getOAuthToken(HttpURLConnection conn, String tokenURL, String clientId, String clientSecret) {
 
 		String token = null;
@@ -27,14 +27,14 @@ public class RestTester {
 
 		try {
 			// creating request
-			String authentication = Base64.getEncoder().encodeToString(auth.getBytes());
+			// String authentication = Base64.getEncoder().encodeToString(auth.getBytes());
 			URL url = new URL(tokenURL);
 			conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("POST");
 			conn.setDoOutput(true);
-			//conn.setRequestProperty("Authorization", "Basic " + authentication);
+			// conn.setRequestProperty("Authorization", "Basic " + authentication);
 			conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-			//conn.setRequestProperty("Accept", "application/json");
+			// conn.setRequestProperty("Accept", "application/json");
 			conn.setRequestProperty("Accept", "*/*");
 			PrintStream os = new PrintStream(conn.getOutputStream());
 			os.print(content);
@@ -69,7 +69,8 @@ public class RestTester {
 			URL url = new URL(urlStr);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Accept", "application/json");
+			conn.setRequestProperty("Accept", "*/*");
+		
 
 			StringBuffer postBody = new StringBuffer();
 			postBody.append("{\"Operation\": \"divide\",\"Term1\": 6,\"Term2\": 12}");
@@ -117,8 +118,11 @@ public class RestTester {
 				conn.setRequestProperty("Authorization", "Bearer " + token);
 			}
 			conn.setRequestMethod("GET");
-			conn.setRequestProperty("Accept", "application/json");
-
+			conn.setRequestProperty("Accept", "*/*");
+			conn.setRequestProperty("dandh-source", "jx-test-bed");
+			conn.setRequestProperty("dandh-tenant", "DHUS");
+			conn.setRequestProperty("dandh-application-user", "jcheraparambil");
+			
 			if (conn.getResponseCode() != 200) {
 				throw new RuntimeException("error : " + conn.getResponseCode());
 			}
@@ -139,13 +143,10 @@ public class RestTester {
 
 			e.printStackTrace();
 
-		}
-		finally {
+		} finally {
 			conn.disconnect();
 		}
 	}
-
-
 
 	private static void testAnotherRestApi(String urlStr) {
 		testAnotherRestApi(urlStr, null, null, null);
@@ -153,35 +154,15 @@ public class RestTester {
 
 	public static void main(String[] args) {
 
-		// testRestAPI("http://corpwesbdv001:9142/Calculator");
-		// accessing secure api using bearer token
-		// testAnotherRestApi("http://10.100.12.216:8280/dnh-time/v1/now",
-		// "c2631a54-2447-3e04-85f6-6328974fcbe1");
-
-		
-		// try {
-		// String tokenURL = "http://10.100.12.216:8280/token";
-		// URL url = new URL(tokenURL);
-		// HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		// System.out.println(getOAuthToken(conn, tokenURL,
-		// "ESkxuPOSTTy0l6sNnuLTf_fhOp8a", "1UzNsucmzU3YxFhCf9nf4988W8Ea"));
-		// } catch (MalformedURLException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-
-		
+	
 		//testAnotherRestApi("http://jcheraparambil-eval-test.apigee.net/joe-test-2");
 		
-//		for (int i =0; i < 1000; i++) {
-//		testAnotherRestApi("http://10.100.12.216:8280/wb/v1/countries/AUS", "http://10.100.12.216:8280/token",
-//				"ESkxuPOSTTy0l6sNnuLTf_fhOp8a", "1UzNsucmzU3YxFhCf9nf4988W8Ea");
-		testAnotherRestApi("https://dev01.apimanager.dandh.net/api/oauth/authorize", "https://dev01.auth.dandh.net/api/oauth/token",
-				"a0295838-5b06-41a4-a8e5-6ea31c26dfff", "c778c70d-503f-4e3f-9eeb-0963eabf6a92");
+//		testAnotherRestApi("https://dev01.apimanager.dandh.net/api/oauth/authorize", "https://dev01.auth.dandh.net/api/oauth/token",
+//				"a0295838-5b06-41a4-a8e5-6ea31c26dfff", "c778c70d-503f-4e3f-9eeb-0963eabf6a92");
 
-//		}
+		
+		testAnotherRestApi("https://dev01.api.dandh.net/rebatesWorkflow/v1/requests?date=2021-11-16", "https://dev01.auth.dandh.net/api/oauth/token",
+					"a0295838-5b06-41a4-a8e5-6ea31c26dfff", "c778c70d-503f-4e3f-9eeb-0963eabf6a92");
+
 	}
 }
