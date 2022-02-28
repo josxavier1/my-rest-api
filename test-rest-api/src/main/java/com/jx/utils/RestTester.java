@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 
+//This is a class to test a rest API that is secured using OAuth
 public class RestTester {
 
 	private static String getOAuthToken(HttpURLConnection conn, String tokenURL, String clientId, String clientSecret) {
